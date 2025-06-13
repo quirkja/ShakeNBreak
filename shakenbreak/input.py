@@ -2799,10 +2799,24 @@ class Distortions:
             verbose=verbose,
         )
 
-        # loop for each defect in dict
-        for folder_path, struct in self._prepare_distorted_defect_inputs(
-            distorted_defects_dict, output_path
+        for folder_path, (
+            struct,
+            charge,
+        ) in self._prepare_distorted_defect_inputs(
+            distorted_defects_dict, output_path, include_charge_state=True
         ).items():
+
+            # Assign charge to CP2K input file by updating relevant keyword
+            # First create dict to pass to Cp2kInput.update()
+            keyword_dict = {
+                "FORCE_EVAL":{
+                    "DFT":{
+                        "CHARGE":charge
+                    },
+                },
+            }
+            cp2k_input.update(keyword_dict)
+
             struct.to(
                 fmt="cif",
                 filename=f"{folder_path}/structure.cif",

@@ -9,7 +9,7 @@
 
 	! the electronic structure part
 	&DFT
-		BASIS_SET_FILE_NAME HFX_BASIS
+		BASIS_SET_FILE_NAME BASIS_MOLOPT
 		POTENTIAL_FILE_NAME GTH_POTENTIALS
 
 		CHARGE 0
@@ -110,7 +110,7 @@
 
 	! Description of the system
 	! Structure will be read from external file
-	&SUBSYS
+    &SUBSYS
 		&CELL
 			CELL_FILE_FORMAT CIF
 			CELL_FILE_NAME structure.cif
