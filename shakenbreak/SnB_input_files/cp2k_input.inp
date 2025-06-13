@@ -28,12 +28,6 @@
 		! calculations with the Gaussian and Plane Waves
 		! scheme)
 
-		&DFT
-			&KPOINTS
-				SCHEME GAMMA 1 1 1 ! Gamma point only
-			&END KPOINTS
-		&END DFT
-
 		&POISSON
 			PERIODIC XYZ ! the default
 		&END POISSON
@@ -55,7 +49,7 @@
 			EPS_SCF 1e-06 ! accuracy of the SCF procedure typically 1.0E-6 - 1.0E-7
 			&OT
 				PRECONDITIONER FULL_SINGLE_INVERSE
-				MINIMIZER DIIS
+				MINIMIZER CG
 			&END OT
 			! an accurate preconditioner suitable also for
 			! larger systems, the most robust choice (DIIS
